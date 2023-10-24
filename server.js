@@ -29,6 +29,9 @@ app.use('/', (req, res, next) => {
 
 io.on('connection', (socket) => {
     console.log('A user connected');
+    socket.on('newMessage', (data) => {
+        io.emit("serverMessage", data)
+    });
 });
 
 httpServer.listen(3000, () => {
